@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="database" class="com.proje.db.Database">
+		<property name="url" value="mysql:localhost:8080"></property>
+		<property name="username" value="yakup"></property>
+		<property name="password" value="12345"></property>
+	</bean>
+
+
+	<!-- Referans Yöntemi -->
+	<!-- <bean id="dbConnection" class="com.proje.db.DBConnection"> <property 
+		name="database" ref="database"></property> </bean> -->
+
+	<!-- Inner Bean Yöntemi -->
+	<!-- <bean id="dbConnection" class="com.proje.db.DBConnection"> <property 
+		name="database"> <bean class="com.proje.db.Database"> <property name="url" 
+		value="mysql:localhost:8080"></property> <property name="username" value="yakup"></property> 
+		<property name="password" value="12345"></property> </bean> </property> </bean> -->
+
+	<!-- Autowire Yöntemi (Bu yöntemde burada autowire yapmak yerine DBConnection sınıfında database değişkeni
+	üzerine @Autowired anotasyonu da kayulabilir.)-->
+	
+	<bean id="dbConnection" class="com.proje.db.DBConnection"
+		autowire="byName"></bean>
+
+	<!-- Byname ile autowire edince ilgili sınıfın değişken isimlerine bakıyor 
+		ve burada da o isimde bean varsa ona bağlantı yapıyor. -->
+
+	<!-- ByType ile yapılınca ilgili sınıftaki değişken tiplerine bakıyor ve 
+		burada da o tipte yani class ta bean var mı onu kontrol ediyor. Ona göre 
+		bağlantı yapıyor. Ancak burada ilgili bean larda id değeri olmamalıdır. Çünkü 
+		ayn dönüş tipinde birden fazla bean olursa hangisini bağlayacağını bilemez. 
+		ByName ile sıkıntı çıkmaz -->
+
+	<!-- Birde constructor ile autowire var. Bunda ilgili sınıfın parametreli constructor ına bakıyor
+	ve burada da o bean lar varsa bağlıyor. -->
+
+
+</beans>
+
+
+
+
+

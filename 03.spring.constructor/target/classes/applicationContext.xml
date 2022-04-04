@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!-- Setter -->     
+<!-- <bean id="dbConnection" class="com.proje.db.DBConnection"> -->   
+    
+<!--     	<property name="url" value="mysql:localhost:8080"></property> -->
+<!--     	<property name="username" value="yakup"></property> -->
+<!--     	<property name="password" value="12345"></property> -->
+ 
+<!-- </bean> --> 
+
+<!-- Constructor Name ve Index ile yapılabilir -->
+	<bean id="dbConnectionName" class="com.proje.db.DBConnection">
+		
+		<constructor-arg name="url" value="mysql:localhost:8080"></constructor-arg>
+		<constructor-arg name="username" value="yakup"></constructor-arg>
+		<constructor-arg name="password" value="12345"></constructor-arg>
+	
+	</bean>
+	
+	<bean id="dbConnectionIndex" class="com.proje.db.DBConnection">
+		
+		<constructor-arg index="0" value="mysql:localhost:8080"></constructor-arg>
+		<constructor-arg index="1" value="yakup"></constructor-arg>
+		<constructor-arg index="2" value="12345"></constructor-arg>
+	
+	</bean>
+	
+	   
+</beans>
+
+
+
+
+

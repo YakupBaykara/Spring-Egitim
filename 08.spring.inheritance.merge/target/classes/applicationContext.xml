@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- abstract="true" yaparak bu nesnenin oluşturulması engellenir.
+	Yani bu bean  başka yerden alınamaz -->
+	<bean id="database" class="com.proje.model.Database" abstract="true">
+		<property name="username" value="yakup"></property>
+		<property name="password" value="12345"></property>
+		<property name="properties">
+			<list>
+				<value>5 min connections</value>
+				<value>10 max connections</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="mysqlDatabase" class="com.proje.model.Database" parent="database">
+		<property name="url" value="mysql:localhost:8080"></property>
+		<property name="properties">
+			<list merge="true">
+				<value>100 sn timout</value>
+				<value>50 sn idle connection test</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="oracleDatabase" class="com.proje.model.Database" parent="database">
+		<property name="url" value="oracle:localhost:3232"></property>
+		<property name="properties">
+			<list merge="true">
+				<value>10 connections increament</value>
+			</list>		
+		</property>
+	</bean>
+</beans>
+
+
+
+
+
